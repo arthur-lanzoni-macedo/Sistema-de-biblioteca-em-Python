@@ -23,9 +23,24 @@ class Usuario:
             print(f"Ops! O livro '{livro.titulo}' já está emprestado no momento e não pode ser retirado.")
             
     def devolver_livro(self, livro):
-        if livro.disponivel in self.livros_emprestados:
+        if livro in self.livros_emprestados:
             self.livros_emprestados.remove(livro)
             livro.disponivel = True
             print(f"O livro '{livro.titulo}' foi devolvido com sucesso!")
         else:
             print(f"Erro: O livro '{livro.titulo}' não consta na lista de emprestados.")
+            
+class Biblioteca:    
+    def __init__(self):
+        self.lista_de_livros = []
+    
+    def adicionar_livro(self, livro):
+        self.lista_de_livros.append(livro)
+        print(f'O livro {livro.titulo} foi salvo na sua biblioteca.')
+        
+    def listar_livros_disponiveis(self):
+        print('Livros disponíves:')
+        
+        for livro in self.lista_de_livros:
+            if livro.disponivel:
+                print(f'{livro.titulo}')
